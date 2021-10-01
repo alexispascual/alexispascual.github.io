@@ -52,17 +52,46 @@
 				<!-- .entry-header -->
 				<div class="entry-content">
 					<p>
-						When Mary Lennox was sent to Manor to live with her uncle everybody said she was the most disagreeablelooking child ever seen. It was true, too. She had a little thin face and a little thin body, thin light hair and a sour expression.
+						The task: find "new" and "interesting" rocks. The destination: Mars Yard. The vehicle: Husky rover. The mission: Moonbot!
 					</p>
 					<p>
-						Her hair was yellow, and her face was yellow because she had been born in India and had always been ill in one way or another. Her father had held a position under the English Government and had always been busy and ill himself, and her mother had been a great beauty who cared only to go to parties and amuse herself with gay people. She had not wanted a little girl at all, and when Mary was born she handed her over to the care of an Ayah, who was made to understand that if she wished to please the Mem Sahib she must keep the child out of sight as much as possible.
+                        
+						The slightly misnamed project was undertaken by myself, Matt Cross, and Lauren Flanagan last November 2019 at the Canadian Space Agency's Analogue Terrain Facility, otherwise called the Mars Yard. The goal was to use the rover and gather as much data as possible for subsequent analysis back at Western. Overall, there are three studies that we were trying to conduct: 1) finding "new" and "interesting" rocks from the perspective of the rover, 2) Finding rocks we have seen before from panorama images, and 3) using Lidar data for autonomous navigation.
+                      
 					</p>
+                  
+                    <h4> The Husky rover </h4>
+                  
 					<p>
-						So when she was a sickly, fretful, ugly little baby she was kept out of the way, and when she became a sickly, fretful, toddling thing she was kept out of the way also. She never remembered seeing familiarly anything but the dark faces of her Ayah and the other native servants, and as they always obeyed her and gave her her own way in everything, because the Mem Sahib would be angry if she was disturbed by her crying, by the time she was six years old she was as tyrannical and selfish a little pig as ever lived.
+						Before talking about the tasks, let's talk about the rover first.
+                        <img src="img/moonbot1.jpg" align="right" style="width:32%;height:32%;">
 					</p>
+                  
+                    <p>
+                      The Husky rover is a commercial-off-the-shelf rover purchased from Clearpath Robotics. It is a highly configurable and ruggedized vehicle that is capable of carrying multiple scientific equipment in different kinds of terrain. For this project, we equipped the Husky with a Lidar scanner, a web camera, and onboard computer, and a battery to power it all. To control the Husky, we used a software developed by Mission Control Space Services. This allowed us to remotely control the rover from a "mission control room" and pretend that we're actually doing a space mission. Which, not gonna lie, felt incredible at the time.
+                    </p>
+                    <p>
+                      We also needed to configure the onboard computer to allow it to talk to the mission control software and interface with all of the scientific equpment. All of which are happening concurrently. For instance, we are able to control the rover while it is sending images/video feed to the mission control software. At the same time, we are able to take Lidar scans while navigating the rover around obstacles. To do so, we implempented a robotics framework called ROS (Robot Operating System) on the onboard computer. It is a framework that mimics a real-time operating system, which allows for concurrent inputs and outputs to and from the system. Without it, we would only be able to do one thing at a time, and that's not really how robots should work.
+                    </p>
+                  
+                    <h4> Novelty Detection </h4>
 					<p>
-						The young English governess who came to teach her to read and write disliked her so much that she gave up her place in three months, and when other governesses came to try to fill it they always went away in a shorter time than the first one. So if Mary had not chosen to really want to know how to read books she would never have learned her letters at all.
+						My part of the project is using rover imagery for novelty detection. Essentially, this translates to finding "new" and "interesting rocks" that we might not have seen before. 
 					</p>
+                  
+                    <p>
+                      Imagine a scenario where a rover is deployed in a new and distant environment (it could be Mars, the Moon, anything!). Let's say for example that from past missions on this particular planetary body, we know what type of rocks already exist in the area. That is, we have some images already taken on the ground and we have had some time to analyze it. If the rover encounters a new rock we have never seen before, we would want to help the scientists and point out the existence of this new and interesting rock. After all, this new rock might be important for the mission. However, the problem lies in the communication delays between rovers in distant planetary objects and the operators at Earth in that it takes a long time to send images back to Earth. As well, it takes time for the scientists to analyze all the images that come in from the rover. The worst case scenario is if the rover drives past a new and interesting rock.
+                    </p>
+                  
+                    <p>
+                      To solve this problem, we could implement algortithms on the rover's onboard computer such that it will be able to alert the scientists if there is something of interest in the image it has just taken. This way, the rover could send back this image right away, and have a scientist take a look at it. This will speed up the data turn around and will help with overall mission success.
+                    </p>
+                  
+                    <p>
+                      To simulate this situation, we drove the rover around and took pictures of all the rocks and outcrops present in the Mars Yard. We can pretend that one of the rocks is "new" and "interesting" and design an algorithm such that we can flag images of these rocks. The research is still ongoing but initial results look promising!
+                    </p>
+                    <img src="img/mars%20yard%20rocks.png">
+                    <p><i>Rocks present in the Mars Yard (I just invented names for them): black pebbles, flagstone, grey pebbles, half wall, rubble pile, tunnel rubble</i></p>
 				</div>
 				<!-- .entry-content -->
 				<!--<footer class="entry-footer">
